@@ -1,1 +1,1 @@
-worker: python stockbot/stockbot.py
+worker: python stockbot.py
