@@ -12,7 +12,7 @@ GUILD = os.getenv('DISCORD_GUILD')
 bot = commands.Bot(command_prefix='!')
 
 @bot.command(name='pingme', help="calculate stock checkpoints")
-async def stat(ctx, stock: str, value: float):
+async def stat(ctx, stock: str, value: float, sign: str, perc: float):
     price = value + value * (perc / 100) if sign == ">" else value - value * (perc / 100)
     updown = "higher" if sign == ">" else "lower"
     response = "`/new-alert stocks reach stock:{} higher-or-lower:{} property:current_price value:{}`".format(stock, updown, price)
