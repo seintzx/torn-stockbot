@@ -11,23 +11,30 @@ GUILD = os.getenv('DISCORD_GUILD')
 
 bot = commands.Bot(command_prefix='!')
 
-
 @bot.command(name='pingme', help="calculate stock checkpoints")
 async def stat(ctx, stock: str, value: float):
-    response = "`.pingme stock {} <{} <{} >{} >{} >{}`".format(
-        stock, round(value - value * 0.005, 2), round(value - value * 0.002,
-                                                      2),
-        round(value + value * 0.003, 2), round(value + value * 0.006, 2),
-        round(value + value * 0.009, 2))
+    price = value + value * (perc / 100) if sign == ">" else value - value * (perc / 100)
+    updown = "higher" if sign == ">" else "lower"
+    response = "`/new-alert stocks reach stock:{} higher-or-lower:{} property:current_price value:{}`".format(stock, updown, price)
     await ctx.send(response)
 
+# OLD PINGME
+# @bot.command(name='pingme', help="calculate stock checkpoints")
+# async def stat(ctx, stock: str, value: float):
+#     response = "`.pingme stock {} <{} <{} >{} >{} >{}`".format(
+#         stock, 
+#         round(value - value * 0.005, 2),
+#         round(value - value * 0.002, 2),
+#         round(value + value * 0.003, 2),
+#         round(value + value * 0.006, 2),
+#         round(value + value * 0.009, 2))
+#  await ctx.send(response)
 
-@bot.command(name='calc', help="calculate stock checkpoints")
-async def stat(ctx, stock: str, value: float, sign: str, perc: float):
-    price = value + value * (perc / 100) if sign == ">" else value - value * (
-        perc / 100)
-    response = "`.pingme stock {} {}{}`".format(stock, sign, round(price, 2))
-    await ctx.send(response)
-
+# @bot.command(name='calc', help="calculate stock checkpoints")
+# async def stat(ctx, stock: str, value: float, sign: str, perc: float):
+#     price = value + value * (perc / 100) if sign == ">" else value - value * (
+#         perc / 100)
+#     response = "`.pingme stock {} {}{}`".format(stock, sign, round(price, 2))
+#     await ctx.send(response)
 
 bot.run(TOKEN)
