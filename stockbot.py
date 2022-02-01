@@ -15,7 +15,7 @@ bot = commands.Bot(command_prefix='!')
 async def stat(ctx, stock: str, value: float, sign: str, perc: float):
     price = value + value * (perc / 100) if sign == ">" else value - value * (perc / 100)
     updown = "higher" if sign == ">" else "lower"
-    response = "`/new-alert stocks reach stock:{} higher-or-lower:{} property:current_price value:{}`".format(stock, updown, price)
+    response = "`/new-alert stocks reach stock:{} higher-or-lower:{} property:current_price value:{}`".format(stock, updown, round(price,2))
     await ctx.send(response)
 
 # OLD PINGME
