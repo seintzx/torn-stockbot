@@ -14,8 +14,8 @@ bot = commands.Bot(command_prefix='!')
 @bot.command(name='pingme', help="calculate stock checkpoints")
 async def stat(ctx, stock: str, value: float, sign: str, perc: float):
     price = value + value * (perc / 100) if sign == ">" else value - value * (perc / 100)
-    updown = "Higher" if sign == ">" else "Lower"
-    response = "`/new-alert stocks reach stock:{} value:{} higher-or-lower:{}`".format(stock, updown, round(price,2))
+    updown = "higher" if sign == ">" else "lower"
+    response = "`/new-alert stocks reach stock:{} value:{} higher-or-lower:{}`".format(stock, round(price,2), updown)
     await ctx.send(response)
 
 # OLD PINGME
